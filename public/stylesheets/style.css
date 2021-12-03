@@ -1,8 +1,16 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* Login */
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
 }
-
-a {
-  color: #00B7FF;
+.h-custom {
+  height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+  .h-custom {
+    height: 100%;
+  }
 }
