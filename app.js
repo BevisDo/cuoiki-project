@@ -7,10 +7,13 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var postRouter = require('./routes/post');
-var loginRouter = require('./routes/login');
+var authRouter = require('./routes/auth');
 
 var app = express();
 
+
+require('dotenv').config()
+const expressSession = require('express-session')
 //connect database
 const mongoose = require('mongoose')
 
@@ -45,7 +48,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts',postRouter);
-app.use('/login',loginRouter)
+app.use('/auth',authRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

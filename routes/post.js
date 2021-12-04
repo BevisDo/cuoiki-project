@@ -1,8 +1,11 @@
 var express = require('express')
 var router = express.Router();
+var verify = require('../lib/middleware/auth')
 
-var postsController  = require('../controller/post')
+var {postController}  = require('../controller/post')
 
-router.post('/create', postsController.create);
+router.post('/create',verify, postController);
+
 
 module.exports = router;
+
