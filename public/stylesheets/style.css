@@ -106,3 +106,29 @@ hr {
   padding-right: 15px;
 }
 
+/* Notification List */
+ul.list-style-none li {
+  list-style: none
+}
+
+ul.list-style-none li a {
+  color: #673AB7;
+  padding: 8px 0px;
+  display: block;
+  text-decoration: none
+}
+
+.noti-card {
+  width: 80%;
+  border: 1px solid #dee2e6;
+}
+
+.noti-card .card-title {
+  position: relative;
+  font-weight: 600;
+  margin-bottom: 10px
+}
+
+.m-r-10 {
+  margin-right: 10%;
+}
