@@ -132,3 +132,40 @@ ul.list-style-none li a {
 .m-r-10 {
   margin-right: 10%;
 }
+
+/* noti-page */
+.post-content {
+  font-weight: 500;
+}
+
+.post-meta {
+  padding-top: 15px;
+  margin-bottom: 20px;
+}
+
+.post-meta li a {
+  color: #999;
+  font-size: 13px;
+}
+
+.post-meta li i {
+  margin-right: 5px;
+}
+
+.post-meta li:after {
+  margin-top: -5px;
+  content: "/";
+  margin-left: 10px;
+}
+
+.post-meta li:last-child:after {
+  display: none;
+}
+
+.mb30 {
+  margin-bottom: 30px !important;
+}
+
+.mt40 {
+  margin-top: 40px !important;
+}
