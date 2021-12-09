@@ -2,19 +2,19 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
 const pk_profileSchema = new Schema({
-    username:{
+    username: {
         type: String,
         require: true,
         unique: true
     },
-    password:{
+    password: {
         type: String,
         require: true
     },
-    creatAt:{
+    creatAt: {
         type: Date,
         default: Date.now
     }
 })
 
-module.exports = mongoose.model('pk_profiles',pk_profileSchema)
+module.exports = mongoose.model('pk_profiles', pk_profileSchema)

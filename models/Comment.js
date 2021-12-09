@@ -6,14 +6,14 @@ const CommentSchema = new Schema({
     //     type: Schema.Types.ObjectId,
     //     ref: 'users'
     // },
-    content:{
+    content: {
         type: String,
         require: true
     },
-    creatAt:{
+    creatAt: {
         type: Date,
         default: Date.now
     }
 })
 
-module.exports = mongoose.model('comments',CommentSchema)
+module.exports = mongoose.model('comments', CommentSchema)
