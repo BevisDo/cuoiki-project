@@ -1,0 +1,43 @@
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "username":"doanhtuan",
+    "password":"doanhtuan" 
+}
+
+###
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "username":"doanhtuan2",
+    "password":"doanhtuan2" 
+}
+
+###
+POST http://localhost:3000/posts/create
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MWIxNmVjOWZmMDA5MmY0NmYxYmY4Y2UiLCJpYXQiOjE2MzkwMTgxODV9.SczD3_kzyMSXsQU5zN1OLIrDjjw9-vyAwSh3J6B7LOQ
+Content-Type: application/json
+
+{
+    "content":"Hom nay troi that dep"
+}
+###
+GET http://localhost:3000/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MWIxNmVjOWZmMDA5MmY0NmYxYmY4Y2UiLCJpYXQiOjE2MzkwMTgxODV9.SczD3_kzyMSXsQU5zN1OLIrDjjw9-vyAwSh3J6B7LOQ
+
+###
+PUT http://localhost:3000/posts/61b16f13ff0092f46f1bf8d0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MWIxNmVjOWZmMDA5MmY0NmYxYmY4Y2UiLCJpYXQiOjE2MzkwMTgxODV9.SczD3_kzyMSXsQU5zN1OLIrDjjw9-vyAwSh3J6B7LOQ
+Content-Type: application/json
+
+{
+    "content":"Hom nay troi deo dep"
+}
+
+###
+DELETE  http://localhost:3000/posts/61b16f13ff0092f46f1bf8d0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MWIxNmVjOWZmMDA5MmY0NmYxYmY4Y2UiLCJpYXQiOjE2MzkwMTgxODV9.SczD3_kzyMSXsQU5zN1OLIrDjjw9-vyAwSh3J6B7LOQ
+
+

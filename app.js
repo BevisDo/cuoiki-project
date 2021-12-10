@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var bodyParser = require('body-parser')
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -15,6 +17,7 @@ var usersRouter = require('./routes/users');
 // =======
 var postRouter = require('./routes/post');
 var authRouter = require('./routes/auth');
+
 // >>>>>>> f1789d0 (Squashed commit of the following:)
 
 var app = express();
