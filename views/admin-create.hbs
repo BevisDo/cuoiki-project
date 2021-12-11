@@ -1,0 +1,67 @@
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mx-auto">
+                <form>
+                    <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+                        
+                        <div class="mx-auto"><h2 class="text-warning">Tạo tài khoản Phòng/Khoa</h2></div>
+                    </div>
+
+                    <!-- Username input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="username"><strong>Username</strong></label>
+                        <input type="text" id="username" class="form-control form-control-lg" placeholder="Enter username">
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="password"><strong>Password</strong></label>
+                        <input type="password" id="password" class="form-control form-control-lg" placeholder="Enter password">
+                    </div>
+
+                    {{!-- Confirm password --}}
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="confirm-password"><strong>Confirm Password</strong></label>
+                        <input type="password" id="confirm-password" class="form-control form-control-lg" placeholder="Re-enter password">
+                    </div>
+
+                    {{!-- Phong/Khoa selector --}}
+                    <div class="form-outline mb-3">
+                        <div class="btn btn-secondary">
+                            <label for="phongkhoa">Phòng/Khoa:</label>
+                            <select class="custom-select" name="phongkhoa" id="phongkhoa">
+                                <option value="CTHSSV"><p>Phòng Công tác học sinh sinh viên(CTHSSV)</p></option>
+                                <option value="DH"><p>Phòng Đại học</p></option>
+                                <option value="SDH"><p>Phòng Sau đại học</p></option>
+                                <option value="DTVMT"><p>Phòng điện toán và máy tính</p></option>
+                                <option value="KTVKDCL"><p>Phòng khảo thí và kiểm định chất lượng</p></option>
+                                <option value="CLC"><p>TDT Creative Language Center</p></option>
+                                <option value="TH"><p>Trung tâm tin học</p></option>
+                                <option value="SDTC"><p>Trung tâm đào tạo phát triển xã hội(SDTC)</p></option>
+                                <option value="ATEM"><p>Trung tâm phát triển Khoa học quản lý và Ứng dụng công nghệ(ATEM)</p></option>
+                                <option value="HTDN"><p>Trung tâm hợp tác doanh nghiệp và cựu sinh viên</p></option>
+                                <option value="NNTHVH"><p>Trung tâm ngoại ngữ - tin học – bồi dưỡng văn hóa</p></option>
+                                <option value="KTKD"><p>Viện chính sách kinh tế và kinh doanh</p></option>
+                                <option value="LUAT"><p>Khoa Luật</p></option>
+                                <option value="MTCN"><p>Khoa Mỹ thuật công nghiệp</p></option>
+                                <option value="DIEN"><p>Khoa Điện – Điện tử</p></option>
+                                <option value="IT"><p>Khoa Công nghệ thông tin</p></option>
+                                <option value="QTKD"><p>Khoa Quản trị kinh doanh</p></option>
+                                <option value="MTVBHLD"><p>Khoa Môi trường và bảo hộ lao động</p></option>
+                                <option value="LDCD"><p>Khoa Lao động công đoàn</p></option>
+                                <option value="TCNH"><p>Khoa Tài chính ngân hàng</p></option>
+                                <option value="GDQT"><p>Khoa giáo dục quốc tế</p></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Create button -->
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="button" class="btn btn-warning btn-lg px-5">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
