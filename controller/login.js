@@ -25,7 +25,8 @@ exports.pk_login = async (req, res, next) => {
         //all good
         const accessToken = jwt.sign({ userId: user._id }, process.env.ACCESS_TOKEN_SECRET)
 
-        res.json({ success: true, message: 'Login thanh cong', accessToken })
-        // res.redirect('')
+        return res.json({ success: true, message: 'Login thanh cong', accessToken })
+        // return accessToken
+
     } catch (error) { }
 }

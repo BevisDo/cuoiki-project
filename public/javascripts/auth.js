@@ -19,3 +19,20 @@ function getCookie(cname) {
     }
     return "";
 }
+
+function login() {
+    $.ajax({
+        url: '/auth/login',
+        type: 'POST',
+        data: {
+            username: $('#username').val(),
+            password: $('#password').val()
+        }
+    }).then(data => {
+        setCookie('token', data.accessToken, 1)
+    }
+    )
+        .catch(err => {
+            console.log(err);
+        })
+}

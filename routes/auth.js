@@ -14,6 +14,8 @@ router.post('/signup', pk_signup);
 router.get('/login', function (req, res) {
     res.render('login', { title: 'Đăng nhập', Layout: false })
 })
-router.post('/login', pk_login)
+router.post('/login', pk_login, (req, res) => {
+    return res.redirect('/posts')
+})
 
 module.exports = router;

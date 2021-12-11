@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser')
+const jwt = require('jsonwebtoken')
 
 
 var indexRouter = require('./routes/index');
@@ -58,6 +59,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+// app.get('/test/', (req, res, next) => {
+//   try {
+//     var token = req.cookies.token
+//     var ketqua = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+//     if (ketqua) {
+//       next()
+//     }
+//   } catch (error) {
+//     return res.json("LOI")
+//   }
+// }, (req, res, next) => {
+//   res.json('WWWWWWWWW')
+// })
 // <<<<<<< HEAD
 // app.use('/login', loginRouter);
 // app.use('/admin-create', adminCreateRouter);
