@@ -3,11 +3,12 @@ var router = express.Router();
 var verify = require('../lib/middleware/auth')
 
 var { postCreateController, postUpdateController, postDeleteController, postReadController, } = require('../controller/post');
-const loginRequire = require('../lib/middleware/auth');
+var loginRequire = require('../lib/middleware/loginRequire');
 // POST /post/create
 router.post('/create', verify, postCreateController);
 // GET /post
 router.get('/', loginRequire, verify, postReadController)
+// router.get('/', postReadController)
 // PUT /post/id_post
 router.put('/:id', verify, postUpdateController)
 // DELETE /post/id_post

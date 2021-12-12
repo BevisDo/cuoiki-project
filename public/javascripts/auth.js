@@ -30,6 +30,7 @@ function login() {
         }
     }).then(data => {
         setCookie('token', data.accessToken, 1)
+        window.location.href = "/"
     }
     )
         .catch(err => {

@@ -7,6 +7,7 @@ var bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken')
 
 
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 // <<<<<<< HEAD
@@ -18,14 +19,15 @@ var usersRouter = require('./routes/users');
 // =======
 var postRouter = require('./routes/post');
 var authRouter = require('./routes/auth');
-
+var ggauthRouter = require('./routes/ggauth');
 // >>>>>>> f1789d0 (Squashed commit of the following:)
 
 var app = express();
 
 
 require('dotenv').config()
-const expressSession = require('express-session')
+var session = require('express-session');
+var passport = require('passport');
 //connect database
 const mongoose = require('mongoose')
 
@@ -57,8 +59,21 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  resave: false,
+  saveUninitialized: true,
+  secret: 'SECRET'
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/posts', postRouter);
+app.use('/auth', authRouter)
+app.use('/ggauth', ggauthRouter)
+
+
 
 // app.get('/test/', (req, res, next) => {
 //   try {
@@ -80,8 +95,7 @@ app.use('/users', usersRouter);
 // app.use('/noti-page', notiPageRouter);
 // app.use('/change-info', changeInfoRouter);
 // =======
-app.use('/posts', postRouter);
-app.use('/auth', authRouter)
+
 // >>>>>>> f1789d0 (Squashed commit of the following:)
 
 // catch 404 and forward to error handler

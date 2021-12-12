@@ -19,11 +19,12 @@ exports.postCreateController = async (req, res) => {
             content
         })
         await newPost.save();
-
+        const username = await Post.findOne({ user: newPost.user }).populate('user', ['username'])
         res.json({
             success: true,
             message: 'Dang thanh cong',
-            post: newPost
+            post: newPost,
+            username: username.user.username
         })
     } catch (error) {
         console.log(error)
