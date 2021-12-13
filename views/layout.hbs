@@ -6,6 +6,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel='stylesheet' href='/stylesheets/style.css' />
+  <!-- ===== BOX ICONS ===== -->
+  <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
   {{!-- Jquery CDN --}}
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -28,10 +30,69 @@
   <script src="/javascripts/auth.js"></script>
   <script src="/javascripts/jquery.js"></script>
   <script src="/javascripts/post.js"></script>
+
+
 </head>
 
 <body>
-  {{{body}}}
+  <div id="body-pd">
+    <header class="header" id="header">
+      <div class="header__toggle">
+        <i class='bx bx-menu' id="header-toggle"></i>
+      </div>
+
+      <div class="header__right">
+        <div class="header__img">
+          <img src="https://i.imgur.com/SdDBmuZ.png" alt="">
+        </div>
+        <div class="header__logout">
+          <i class='bx bx-power-off bx-md'></i>
+        </div>
+      </div>
+
+    </header>
+
+    <div class="l-navbar" id="nav-bar">
+      <nav class="nav">
+        <div>
+          <a href="#" class="nav__logo">
+            <i class='bx bx-layer nav__logo-icon'></i>
+            <span class="nav__logo-name">THÔNG BÁO</span>
+          </a>
+          <a href="#" class="nav__link">
+            <i class='bx bxs-home-smile'></i>
+            <span class="nav__name">Trang Chủ</span>
+          </a>
+
+          <ul>
+            <li class="nav_link">
+              <a href="#homeSubmenu" class="nav__link" data-toggle="collapse" aria-expanded="false">
+                <i class='bx bx-list-ul'></i>
+                <span class="nav__name">Phân loại thông báo</span>
+              </a>
+              <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                  <span href="#" class="nav__link"><i class='bx bx-news'></i>Phòng Ban</a>
+                </li>
+                <li>
+                  <span href="#" class="nav__link"><i class='bx bx-news'></i>Chủ Đề</a>
+                </li>
+                <li>
+                  <span href="#" class="nav__link"><i class='bx bx-news'></i>Tất Cả Thông Báo</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <a href="#" class="nav__link">
+            <i class='bx bx-log-out nav__icon'></i>
+            <span class="nav__name">Back To Portal</span>
+          </a>
+      </nav>
+    </div>
+  </div>
+  <div class="all-body-exceptlayout">
+    {{{body}}}
+  </div>
 </body>
 <script src="/javascripts/main.js"></script>
 
