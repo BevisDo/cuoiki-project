@@ -12,7 +12,7 @@ router.post('/signup', pk_signup);
 
 //login
 router.get('/login', function (req, res) {
-    res.render('login', { title: 'Đăng nhập', Layout: false })
+    res.render('login', { title: 'Đăng nhập', layout: false })
 })
 router.post('/login', pk_login)
 
