@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var notilistRouter = require('./routes/noti-list');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
@@ -13,7 +13,6 @@ var notiPageRouter = require('./routes/noti-page');
 var changeInfoRouter = require('./routes/student-change-info');
 var ListPBRouter = require('./routes/list-PB');
 var app = express();
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -32,6 +31,8 @@ app.use('/timeline', timelineRouter);
 app.use('/noti-page', notiPageRouter);
 app.use('/change-info', changeInfoRouter);
 app.use('/list-PB', ListPBRouter);
+app.use('/noti-list', notilistRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));

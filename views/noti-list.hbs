@@ -1,0 +1,115 @@
+<div class="container col-12 p-1 pl-1 mt-6 bg-dark text-white">
+    <h3 class="justify-content-center justify-content-lg-start">Danh Sách Thông
+        Báo</h3>
+</div>
+<div class="container-fluid pt-3 mt-1 bg-light justify-content-center
+    justify-content-lg-start">
+    <div class="row d-flex align-items-center">
+        <div class="col-4">
+            <form>
+                <div class="input-group mb-3 input-group-sm">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm theo tin thông báo">
+                </div>
+            </form>
+        </div>
+        <div class="col-5">
+            <form>
+                <div class="input-group mb-3 input-group-sm">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm theo nội dung">
+                </div>
+            </form>
+        </div>
+        <div class="col-3">
+            <div class="input-group mb-3 input-group-sm">
+                <select class="custom-select" id="inputGroupSelect01">
+                        <option selected>Phòng/Khoa</option>
+                        <option value="1">PHÒNG CTHSSV</option>
+                        <option value="2">PHÒNG ĐẠI HỌC</option>
+                        <option value="3">PHÒNG SAU ĐẠI HỌC</option>
+                        <option value="4">PHÒNG ĐIỆN TOÁN VÀ MÁY TÍNH</option>
+                        <option value="5">PHÒNG KHẢO THÍ VÀ KĐCL</option>
+                        <option value="6">PHÒNG TÀI CHÍNH</option>
+                        <option value="7">TO CREATIVE LANGUEGE CENTER</option>
+                        <option value="8">CÔNG TY TĐT</option>
+                        <option value="9">TRUNG TÂM TIN HỌC</option>
+                        <option value="10">VIỆN CHÍNH SÁCH KINH TẾ VÀ KINH DOANH</option>
+                        <option value="11">TT NGOẠI NGỮ TIN HỌC</option>
+                        <option value="12">TRUNG TÂM ĐÀO TẠO PHÁT TRIỂN XÃ HỘI</option>
+                        <option value="13">KHOA LUẬT</option>
+                        <option value="14">KHOA MỸ THUẬT CÔNG NGHIỆP</option>
+                        <option value="15">KHOA ĐIỆN-ĐIỆN TỬ</option>
+                        <option value="16">KHOA CÔNG NGHỆ THÔNG TIN</option>
+                        <option value="17">KHOA QUẢN TRỊ KINH DOANH</option>
+                        <option value="18">KHOA LAO ĐỘNG CÔNG ĐOÀN</option>
+                        <option value="19">KHOA TÀI CHÍNH NGÂN HÀNG</option>
+                        <option value="20">KHOA GIÁO DỤC QUỐC TẾ</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+        <div class="row d-flex align-items-center">
+            <div class="col-2">
+                            <div class="input-group mb-3 input-group-sm">
+                <select class="custom-select" id="inputGroupSelect02">
+                        <option selected>Chủ đề</option>
+                        <option value="1">Bảo hiểm y tế</option>
+                        <option value="2">Cơ sở tin học (MOS)</option>
+                        <option value="3">Chính sách học bổng</option>
+                        <option value="4">Đăng ký môn học</option>
+                        <option value="5">Học phí</option>
+                        <option value="6">Học vụ</option>
+                        <option value="7">Hướng dẫn</option>
+                        <option value="8">Kế hoạch</option>
+                        <option value="9">Lịch thi - danh sách thi</option>
+                        <option value="10">Phúc khảo</option>
+                        <option value="11">Qui định-qui chế</option>
+                        <option value="12">Sinh hoạt chủ nhiệm</option>
+                        <option value="13">Sự kiện</option>
+                        <option value="14">Sự kiện sắp diễn ra</option>
+                        <option value="15">Tập sự nghề nghiệp</option>
+                        <option value="16">Tin tức cũ</option>
+                        <option value="17">Thông báo chiêu sinh</option>
+                        <option value="18">Tuyển dụng</option>
+                        <option value="19">Thông báo khác</option>
+                        <option value="20">Tất cả</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-2">
+                <div class="input-group mb-3 input-group-sm">
+                    <input type="text" id="startdate" class="form-control" placeholder="Ngày bắt đầu" onfocus="(this.type='date')">
+                </div>        
+            </div>
+            <div class="col-2">
+            <div class="input-group mb-3 input-group-sm">
+                    <input type="text" id="enddate"  class="form-control" placeholder="Ngày kết thúc" onfocus="(this.type='date')">
+            </div>   
+            </div>
+            <div class="col-0">
+                  <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Chưa xem</label>
+                  </div>
+            </div>
+            <div class="col-2">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                        <label class="form-check-label" for="exampleCheck1">Quan trọng</label>
+                  </div>
+            </div>
+            <div class="col-1">
+                    <button type="button" class="btn btn-primary btn-light btn-sm btn-outline-secondary">
+                        <i class='bx bx-message-square-x bx-xs'></i>
+                        Xóa
+                    </button>
+            </div>         
+            <div class="col-2">
+                    <button type="button" class="btn btn-primary btn-light btn-sm btn-outline-secondary">
+                        <i class='bx bx-search-alt '></i>
+                        Tìm Kiếm
+                    </button>
+            </div>      
+        </div>
+    </div>
