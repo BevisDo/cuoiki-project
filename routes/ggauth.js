@@ -3,6 +3,7 @@ var sv_profiles = require('../models/sv_profile');
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const router = express.Router()
+// const jwt = require('jsonwebtoken')
 
 
 passport.use(new GoogleStrategy({
@@ -25,6 +26,9 @@ passport.use(new GoogleStrategy({
                     .then(user => done(null, user))
                     .catch(err => done(err, null));
             });
+        // setCookie('token', jwt.sign({ userId: sv_profiles._id }, process.env.ACCESS_TOKEN_SECRET), 1)
+
+        // res.json({ success: true, message: 'sign up thanh cong', accessTokengg })
     }
 ));
 
@@ -48,7 +52,6 @@ router.get('/google',
 
 );
 
-router.get('/google/callback',
-    passport.authenticate('google', { successRedirect: '/', failureRedirect: '/auth/login' }));
+router.get('/google/callback', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/auth/login' }));
 
 module.exports = router;

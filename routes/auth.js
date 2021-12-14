@@ -1,20 +1,20 @@
 const express = require('express')
-const { pk_signup } = require('../controller/signup')
-const { pk_login } = require('../controller/login')
-// var verify = require('../lib/middleware/auth')
+const auth = require('../controller/auth')
 const router = express.Router()
 
 //signup
 router.get('/signup', function (req, res) {
     res.render('signup', { title: 'Đăng ký phòng khoa' })
 })
-router.post('/signup', pk_signup);
+router.post('/signup', auth.pk_signup);
+
+router.get('/logout', auth.pk_logout)
 
 //login
 router.get('/login', function (req, res) {
-    res.render('login', { title: 'Đăng nhập', Layout: false })
+    res.render('login', { title: 'Đăng nhập', layout: false })
 })
-router.post('/login', pk_login)
+router.post('/login', auth.pk_login)
 
 
 module.exports = router;

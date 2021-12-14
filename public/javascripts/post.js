@@ -12,9 +12,9 @@ $(document).ready(function () {
             }
 
             response.json().then(data => {
-                console.log(data.post)
+                // console.log(data.post)
                 for (let i = 0; i < data.post.length; i++) {
-                    console.log('hello')
+                    // console.log('hello')
                     var temp = document.getElementsByTagName("template")[0];
                     var clone = temp.content.cloneNode(true);
                     var nameEl = clone.querySelector(".username");
@@ -47,7 +47,7 @@ $(document).ready(function () {
                 }
                 response.json().then(function (data) {
                     if (data.success == true) {
-                        console.log(data)
+                        // console.log(data)
                         var temp = document.getElementsByTagName("template")[0];
                         var clone = temp.content.cloneNode(true);
                         var nameEl = clone.querySelector(".username");
@@ -61,5 +61,6 @@ $(document).ready(function () {
                 })
             })
     }
+
 });
 
