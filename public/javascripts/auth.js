@@ -29,7 +29,7 @@ function login() {
             password: $('#password').val()
         }
     }).then(data => {
-        setCookie('token', data.accessToken, 1)
+        setCookie('token', data.accessTokengg, 1)
         window.location.href = "/"
     }
     )
