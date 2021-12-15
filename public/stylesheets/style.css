@@ -409,3 +409,10 @@ ul.list-style-none li a {
 .mt-6 {
     margin-top: 4rem !important;
 }
+
+
+/*pagination*/
+
+.noti-footer {
+    justify-content: space-between;
+}
