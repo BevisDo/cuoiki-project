@@ -410,3 +410,16 @@ ul.list-style-none li a {
 .h-50 {
   height: 50px;
 }
+
+/*Danh sach phong ban*/
+
+.mt-6 {
+  margin-top: 4rem !important;
+}
+
+
+/*pagination*/
+
+.noti-footer {
+  justify-content: space-between;
+}
