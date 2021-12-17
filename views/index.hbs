@@ -13,7 +13,7 @@
                                     class="fa fa-youtube-play youtube"></i></button>
                         </div>
                         <div class="col-sm-6 text-right">
-                            <button type="button" class="btn btn-secondary px-5 mt-1 abcd" id="post-btn">Post</button>
+                            <button type="button" class="btn btn-secondary px-5 mt-1" id="post-btn">Post</button>
                         </div>
                     </div>
                 </form>
@@ -102,7 +102,7 @@
 
 
 {{!-- Modal --}}
-<div class="modal fade" id="deletePost" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="changePost" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -113,7 +113,7 @@
             </div>
             <div class="modal-body">
                 <form class="card p-3 mb-2 border-0">
-                        <textarea class="form-control create-post h-50" placeholder="What's on your mind?" id="content"
+                        <textarea class="form-control create-post h-50" placeholder="What's on your mind?" id="contentChange"
                             name="content"></textarea>
                         <div class="row mt-3">
                             <div class="col-sm-6">
@@ -122,7 +122,7 @@
                                         class="fa fa-youtube-play youtube"></i></button>
                             </div>
                             <div class="col-sm-6 text-right">
-                                <button type="button" class="btn btn-secondary px-5 mt-1" id="post-btn">Post</button>
+                                <button type="button" class="btn btn-secondary px-5 mt-1" id="change-btn" data-dismiss="modal" aria-label="Close">Save</button>
                             </div>
                         </div>
                     </form>
