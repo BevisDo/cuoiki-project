@@ -13,7 +13,11 @@ var usersRouter = require('./routes/users');
 var postRouter = require('./routes/post');
 var authRouter = require('./routes/auth');
 var ggauthRouter = require('./routes/ggauth');
+
 var commentRouter = require('./routes/comment')
+
+var personalRouter = require('./routes/personal');
+
 
 var app = express();
 
@@ -65,8 +69,10 @@ app.use('/users', usersRouter);
 app.use('/posts', postRouter);
 app.use('/auth', authRouter)
 app.use('/ggauth', ggauthRouter)
+
 app.use('/comment', commentRouter)
 
+app.use('/personal', personalRouter);
 
 app.use(function (req, res, next) {
   next(createError(404));

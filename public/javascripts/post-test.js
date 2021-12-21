@@ -1,5 +1,11 @@
 function start() {
-    getPosts(render)
+    if (window.location.pathname == '/') {
+        getPosts(render)
+    } else {
+        var url = window.location.pathname
+        var id = url.slice(10)
+        getPostsById(id, render)
+    }
     handlecreate()
 }
 start();
@@ -16,18 +22,32 @@ function getPosts(callback) {
         .then(callback);
 }
 
-function render(posts) {
-    var listPosts = document.querySelector("#status")
-    var htmls = posts.post.slice(0).reverse().map(function (e) {
+function getPostsById(id, callback) {
+    fetch('/posts/' + id, {
+        method: 'GET',
+        headers: {
+            'Authorization': "Bearer " + getCookie("token"),
+        }
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(callback);
+}
 
-        // console.log(e)
+
+function render(posts) {
+
+    var listPosts = document.querySelector("#status")
+    // console.log(posts.post)
+    var htmls = posts.post.slice(0).reverse().map(function (e) {
         return `
             <div class="card post-${e._id}">
                 <div class="d-flex justify-content-between p-2 px-3">
                     <div class="d-flex flex-row align-items-center"> <img src="https://i.imgur.com/UXdKE3o.jpg"
                             width="50px" class="rounded-circle">
                         <div class="d-flex flex-column ml-2">
-                            <span class="font-weight-bold username">${e.user.username}</span>
+                            <a class="font-weight-bold text-dark username" href="/personal/${e.user._id}">${e.user.username}</a>
                         </div>
                     </div>
                     <div class="d-flex flex-row mt-1 ellipsis ml-auto"> 
@@ -41,8 +61,10 @@ function render(posts) {
                         </div>
                     </div>
                 </div>
-    
-                <!-- <img src="https://i.imgur.com/xhzhaGA.jpg" class="img-fluid"> -->
+                
+                <div class="audio">
+                    <!-- <img src="https://i.imgur.com/xhzhaGA.jpg" class="img-fluid"> -->
+                </div>
     
                 <div class="p-2">
                     <p class="text-justify content">${e.content}</p>
@@ -79,7 +101,36 @@ function render(posts) {
                 </div>
             </div>`
     })
+
     listPosts.innerHTML = htmls.join("");
+    // var ele10 = [] //Chua 1 lan 10 posts
+    // var tmp = 0
+    // for (let i = 0; i < htmls.length; i++) {
+    //     if (i <= 9) {
+    //         ele10.push(htmls[i])
+    //     }else {
+    //         tmp = i
+    //         listPosts.innerHTML=ele10.join("");
+    //         ele10 = [];
+    //         break;
+    //         count()
+    //     }
+    // }
+
+    // document.addEventListener('scroll', function() {
+
+    //     a = window.scrollY
+    //     var bottom = $(document).height() - $(window).height()
+
+    //     if(a>bottom)
+    //     {   
+    //         count(tmp, htmls)
+    //         // $(ele10).appendTo(listPosts)
+    //         // ele10 = []
+    //     }
+    // })
+
+
 }
 
 function createPosts(data, callback) {
@@ -100,19 +151,22 @@ function createPosts(data, callback) {
 
 function handlecreate() {
     var createBtn = document.querySelector('#post-btn')
-    createBtn.onclick = function () {
-        var content = document.querySelector('#content').value;
-        var formdata = {
-            content: content
+
+    if (createBtn) {
+        createBtn.onclick = function () {
+            var content = document.querySelector('#content').value;
+            var formdata = {
+                content: content
+            }
+            if (content != '') {
+                createPosts(formdata, function () {
+                    getPosts(render)
+                });
+            } else {
+                alert('Vui long nhap noi dung bai viet')
+            }
+            $("#content").val('');
         }
-        if (content != '') {
-            createPosts(formdata, function () {
-                getPosts(render)
-            });
-        } else {
-            alert('Vui long nhap noi dung bai viet')
-        }
-        $("#content").val('');
     }
 }
 
@@ -125,9 +179,9 @@ function change(id, data, callback) {
         },
         body: JSON.stringify(data)
     }
-    fetch('/posts' + '/' + id, Options)// giống postman course/id để xóa 
+    fetch('/posts' + '/' + id, Options)
         .then(function (response) {
-            response.json();//promise resolves dạng JSON
+            response.json();
             if (response.status == 401 && response.statusText == "Unauthorized") {
                 throw new Error("Ban khong the sua bai viet cua nguoi khac")
             } else if (response.status == 400 && response.statusText == "Bad Request") {
@@ -155,8 +209,7 @@ function handlechange(id) {
         };
         contentChange.value = ''
         change(id, formData, function () {
-            getPosts(render);
-
+            start(); //thay cho dong tren
         })
     }
 }
