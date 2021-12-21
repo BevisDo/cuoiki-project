@@ -1,9 +1,10 @@
 const express = require('express')
-var sv_profiles = require('../models/sv_profile');
+var pk_profiles = require('../models/pk_profile');
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const router = express.Router()
-// const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
+
 
 
 passport.use(new GoogleStrategy({
@@ -13,22 +14,20 @@ passport.use(new GoogleStrategy({
 },
     function (accessToken, refreshToken, profile, done) {
         const authId = 'google:' + profile.id;
-        sv_profiles.findOne({ 'authId': authId })
+        pk_profiles.findOne({ 'authId': authId })
             .then(user => {
                 if (user) {
                     return done(null, user);
                 }
-                new sv_profiles({
+                new pk_profiles({
                     authId: authId,
-                    name: profile.displayName,
+                    username: profile.displayName,
                     email: profile.emails[0].value,
                 }).save()
                     .then(user => done(null, user))
                     .catch(err => done(err, null));
             });
-        // setCookie('token', jwt.sign({ userId: sv_profiles._id }, process.env.ACCESS_TOKEN_SECRET), 1)
 
-        // res.json({ success: true, message: 'sign up thanh cong', accessTokengg })
     }
 ));
 
@@ -52,6 +51,20 @@ router.get('/google',
 
 );
 
-router.get('/google/callback', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/auth/login' }));
+router.get('/google/callback', passport.authenticate('google', { session: false }),
+    async function (req, res) {
+        // console.log(req.user.email)
+
+        const usergg = await pk_profiles.findOne({ 'email': req.user.email })
+
+        const accessTokengg = jwt.sign({ userId: usergg._id }, process.env.ACCESS_TOKEN_SECRET)
+        res.cookie('token', accessTokengg)
+        // return res.json({ success: true, message: 'Login thanh cong', accessTokengg })
+        res.redirect('/')
+    }
+);
+// router.get('/google/callback', passport.authenticate('google'), function (req, res) {
+//     res.cookie('token', jwt.sign({ userId: sv_profiles._id }, process.env.ACCESS_TOKEN_SECRET), 1)
+// });
 
 module.exports = router;

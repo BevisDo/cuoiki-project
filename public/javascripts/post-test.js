@@ -10,18 +10,17 @@ function getPosts(callback) {
             'Authorization': "Bearer " + getCookie("token"),
         },
     })
-    .then(function (response)
-    {
-        return response.json();
-    })
-    .then(callback);
+        .then(function (response) {
+            return response.json();
+        })
+        .then(callback);
 }
 
 function render(posts) {
-    var listPosts =document.querySelector("#status")
-    var htmls=posts.post.slice(0).reverse().map(function (e) {
+    var listPosts = document.querySelector("#status")
+    var htmls = posts.post.slice(0).reverse().map(function (e) {
 
-        console.log(e)
+        // console.log(e)
         return `
             <div class="card post-${e._id}">
                 <div class="d-flex justify-content-between p-2 px-3">
@@ -80,11 +79,11 @@ function render(posts) {
                 </div>
             </div>`
     })
-    listPosts.innerHTML=htmls.join("");
+    listPosts.innerHTML = htmls.join("");
 }
 
-function createPosts(data,callback) {
-    var Options={
+function createPosts(data, callback) {
+    var Options = {
         method: "POST",
         headers: {
             'Authorization': "Bearer " + getCookie("token"),
@@ -92,36 +91,33 @@ function createPosts(data,callback) {
         },
         body: JSON.stringify(data)
     }
-    fetch('/posts/create',Options)
-    .then(function (response) {
-        response.json();//promise resolves dạng JSON
-    })
-    .then(callback)
+    fetch('/posts/create', Options)
+        .then(function (response) {
+            response.json();//promise resolves dạng JSON
+        })
+        .then(callback)
 }
 
-function handlecreate()
-{
+function handlecreate() {
     var createBtn = document.querySelector('#post-btn')
-    createBtn.onclick = function()
-    {
+    createBtn.onclick = function () {
         var content = document.querySelector('#content').value;
         var formdata = {
             content: content
         }
         if (content != '') {
-            createPosts(formdata,function(){    
+            createPosts(formdata, function () {
                 getPosts(render)
             });
-        }else {
+        } else {
             alert('Vui long nhap noi dung bai viet')
         }
         $("#content").val('');
     }
 }
 
-function change(id,data,callback) 
-{
-    var Options={
+function change(id, data, callback) {
+    var Options = {
         method: "PUT",
         headers: {
             'Authorization': "Bearer " + getCookie("token"),
@@ -130,45 +126,43 @@ function change(id,data,callback)
         body: JSON.stringify(data)
     }
     fetch('/posts' + '/' + id, Options)// giống postman course/id để xóa 
-    .then(function (response) {
-        response.json();//promise resolves dạng JSON
-        if(response.status == 401 && response.statusText == "Unauthorized") {
-            throw new Error("Ban khong the sua bai viet cua nguoi khac")
-        }else if(response.status == 400 && response.statusText == "Bad Request") {
-            throw new Error("Vui long nhap noi dung muon thay doi")
-        }
-    })
-    .then(callback)
-    .catch(function(err) {
-        alert(err)
-    })
+        .then(function (response) {
+            response.json();//promise resolves dạng JSON
+            if (response.status == 401 && response.statusText == "Unauthorized") {
+                throw new Error("Ban khong the sua bai viet cua nguoi khac")
+            } else if (response.status == 400 && response.statusText == "Bad Request") {
+                throw new Error("Vui long nhap noi dung muon thay doi")
+            }
+        })
+        .then(callback)
+        .catch(function (err) {
+            alert(err)
+        })
 }
 
-function handlechange(id)
-{
+function handlechange(id) {
     var postItem = document.querySelector(".post-" + id);
     var getContent = postItem.querySelector(".content").innerText;
 
-    var contentChange=document.querySelector("#contentChange")
+    var contentChange = document.querySelector("#contentChange")
 
-    contentChange.value=getContent;
+    contentChange.value = getContent;
 
-    var btnUpdate=document.querySelector("#change-btn")
-    btnUpdate.onclick=function(){
+    var btnUpdate = document.querySelector("#change-btn")
+    btnUpdate.onclick = function () {
         var formData = {
             content: contentChange.value,
         };
         contentChange.value = ''
-        change(id,formData,function(){
+        change(id, formData, function () {
             getPosts(render);
 
         })
     }
 }
 
-function deletePost(id)
-{
-    var Options={
+function deletePost(id) {
+    var Options = {
         method: "DELETE",
         headers: {
             'Authorization': "Bearer " + getCookie("token"),
@@ -176,20 +170,19 @@ function deletePost(id)
         },
     }
     fetch('/posts' + '/' + id, Options)// giống postman course/id để xóa 
-    .then(function (response) {
-        response.json();//promise resolves dạng JSON
-        if(response.status == 401 && response.statusText == "Unauthorized") {
-            throw new Error("Unauthorized")
-        }
-    })
-    .then(function () {
-    var postItem = document.querySelector('.post-'+id)
-    if(postItem)
-    {
-        postItem.remove();
-    }
-    })
-    .catch(function (err) {
-        alert('Ban khong the xoa bai viet cua nguoi khac')
-    })
+        .then(function (response) {
+            response.json();//promise resolves dạng JSON
+            if (response.status == 401 && response.statusText == "Unauthorized") {
+                throw new Error("Unauthorized")
+            }
+        })
+        .then(function () {
+            var postItem = document.querySelector('.post-' + id)
+            if (postItem) {
+                postItem.remove();
+            }
+        })
+        .catch(function (err) {
+            alert('Ban khong the xoa bai viet cua nguoi khac')
+        })
 }

@@ -39,5 +39,19 @@ Content-Type: application/json
 ###
 DELETE  http://localhost:3000/posts/61b16f13ff0092f46f1bf8d0
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MWIxNmVjOWZmMDA5MmY0NmYxYmY4Y2UiLCJpYXQiOjE2MzkwMTgxODV9.SczD3_kzyMSXsQU5zN1OLIrDjjw9-vyAwSh3J6B7LOQ
+###
+PUT http://localhost:3000/comment/create/61c1451b47143d9221b0985a
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MWMxM2RiYjg0Y2NjOGQ1NzAzMjU4Y2YiLCJpYXQiOjE2NDAwNTQyMDN9.HUmAKueU5lNEdcUQi7wR9yVHIp43vDAhB2Gi4NMf_Qo
+Content-Type: application/json
+
+{
+    "content":"comment 2"
+}
+###
+//delete comment
+DELETE http://localhost:3000/comment/61b01a69201fc684acba27d5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MWIwMWE2OTIwMWZjNjg0YWNiYTI3ZDUiLCJpYXQiOjE2Mzk4ODM3NzJ9.x90r_R6maPHXHgyjruJXaLXoWAOTZckDBHtZoHXucAA
+
+
 
 

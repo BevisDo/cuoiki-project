@@ -10,17 +10,10 @@ const jwt = require('jsonwebtoken')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-// <<<<<<< HEAD
-// var loginRouter = require('./routes/login');
-// var adminCreateRouter = require('./routes/admin-create');
-// var timelineRouter = require('./routes/timeline');
-// var notiPageRouter = require('./routes/noti-page');
-// var changeInfoRouter = require('./routes/student-change-info');
-// =======
 var postRouter = require('./routes/post');
 var authRouter = require('./routes/auth');
 var ggauthRouter = require('./routes/ggauth');
-// >>>>>>> f1789d0 (Squashed commit of the following:)
+var commentRouter = require('./routes/comment')
 
 var app = express();
 
@@ -72,33 +65,9 @@ app.use('/users', usersRouter);
 app.use('/posts', postRouter);
 app.use('/auth', authRouter)
 app.use('/ggauth', ggauthRouter)
+app.use('/comment', commentRouter)
 
 
-
-// app.get('/test/', (req, res, next) => {
-//   try {
-//     var token = req.cookies.token
-//     var ketqua = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
-//     if (ketqua) {
-//       next()
-//     }
-//   } catch (error) {
-//     return res.json("LOI")
-//   }
-// }, (req, res, next) => {
-//   res.json('WWWWWWWWW')
-// })
-// <<<<<<< HEAD
-// app.use('/login', loginRouter);
-// app.use('/admin-create', adminCreateRouter);
-// app.use('/timeline', timelineRouter);
-// app.use('/noti-page', notiPageRouter);
-// app.use('/change-info', changeInfoRouter);
-// =======
-
-// >>>>>>> f1789d0 (Squashed commit of the following:)
-
-// catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
 });

@@ -3,13 +3,12 @@ const Schema = mongoose.Schema
 
 const pk_profileSchema = new Schema({
     username: {
-        type: String,
-        require: true,
-        unique: true
+        type: String
     },
+    authId: String,
+    email: String,
     password: {
-        type: String,
-        require: true
+        type: String
     },
     creatAt: {
         type: Date,

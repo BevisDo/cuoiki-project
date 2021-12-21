@@ -10,6 +10,13 @@ const PostSchema = new Schema({
         type: String,
         require: true
     },
+    comment: [{
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: 'pk_profiles'
+        },
+        content: String,
+    }],
     creatAt: {
         type: Date,
         default: Date.now

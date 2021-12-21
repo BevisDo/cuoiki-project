@@ -1,4 +1,6 @@
 const pk_profile = require('../models/pk_profile')
+const sv_profiles = require('../models/sv_profile')
+
 //module hash password
 const jwt = require('jsonwebtoken')
 const argon2 = require('argon2')

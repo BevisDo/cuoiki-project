@@ -1,4 +1,4 @@
-const pk_profile = require('../models/pk_profile')
+// const pk_profile = require('../models/pk_profile')
 const Post = require('../models/Post')
 
 
@@ -18,8 +18,10 @@ exports.postCreateController = async (req, res) => {
             user: req.userId,
             content
         })
+        console.log()
         await newPost.save();
         const username = await Post.findOne({ user: newPost.user }).populate('user', ['username'])
+        // console.log(username)
         res.json({
             success: true,
             message: 'Dang thanh cong',
