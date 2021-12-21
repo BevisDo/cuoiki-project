@@ -107,3 +107,14 @@ exports.postDeleteController = async (req, res) => {
     }
 
 }
+
+exports.postReadControlleById = async (req, res) => {
+    try {
+        const post = await Post.find( {user: req.params.id} ).sort([['create_at', -1]]).populate('user', ['username'])
+        res.json({ success: true, post })
+        // res.redirect('/posts')
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ success: false, message: 'Intenal server error' })
+    }
+}
