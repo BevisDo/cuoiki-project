@@ -15,7 +15,7 @@ const PostSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'pk_profiles'
         },
-        content: String,
+        content: String
     }],
     creatAt: {
         type: Date,

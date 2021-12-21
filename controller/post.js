@@ -18,7 +18,6 @@ exports.postCreateController = async (req, res) => {
             user: req.userId,
             content
         })
-        console.log()
         await newPost.save();
         const username = await Post.findOne({ user: newPost.user }).populate('user', ['username'])
         // console.log(username)
@@ -38,8 +37,9 @@ exports.postCreateController = async (req, res) => {
 // Read post
 exports.postReadController = async (req, res) => {
     try {
-        const post = await Post.find().sort([['create_at', -1]]).populate('user', ['username'])
-        res.json({ success: true, post })
+        const post = await Post.find().sort([['create_at', -1]]).populate('user', ['username']).populate({ path: 'comment', populate: { path: 'user'}})
+
+        res.json({ success: true, post})
         // res.redirect('/posts')
     } catch (error) {
         console.log(error)
@@ -107,12 +107,12 @@ exports.postDeleteController = async (req, res) => {
         console.log(error)
         res.status(500).json({ success: false, message: 'Intenal server error' })
     }
-
 }
 
 exports.postReadControlleById = async (req, res) => {
     try {
-        const post = await Post.find( {user: req.params.id} ).sort([['create_at', -1]]).populate('user', ['username'])
+        const post = await Post.find( {user: req.params.id} ).sort([['create_at', -1]]).populate('user', ['username']).populate({ path: 'comment', populate: { path: 'user'}})
+        
         res.json({ success: true, post })
         // res.redirect('/posts')
     } catch (error) {

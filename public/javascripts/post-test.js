@@ -9,6 +9,7 @@ function start() {
     handlecreate()
 }
 start();
+
 function getPosts(callback) {
     fetch('/posts', {
         method: 'GET',
@@ -35,11 +36,10 @@ function getPostsById(id, callback) {
         .then(callback);
 }
 
-
+//DOM posts
 function render(posts) {
-
+    console.log(posts)
     var listPosts = document.querySelector("#status")
-    // console.log(posts.post)
     var htmls = posts.post.slice(0).reverse().map(function (e) {
         return `
             <div class="card post-${e._id}">
@@ -81,58 +81,40 @@ function render(posts) {
                     <hr>
     
                     <div class="comments">
-    
-                        <div class="d-flex flex-row mb-2"> <img src="https://i.imgur.com/9AZ2QX1.jpg" width="40"
-                                class="rounded-image">
-                            <div class="d-flex flex-column ml-2"> <span class="name">Daniel Frozer</span> <small
-                                    class="comment-text">I like this alot! thanks alot</small>
-                                <div class="d-flex flex-row align-items-center comment-func">
-                                    <small>Like</small>
-                                    <small>Reply</small> <small>18 mins</small>
-                                </div>
-                            </div>
-                        </div>
+                        <div id="comments-${e._id}"></div>
+                    
     
                         <div class="comment-input"> <input type="text" class="form-control"
-                                placeholder="Write a comment...">
+                                placeholder="Write a comment..." id="comment-input" onclick="handleCreateComment(\'${e._id}\')">
                             <div class="fonts"> <i class="fa fa-camera"></i> </div>
                         </div>
                     </div>
                 </div>
             </div>`
     })
-
     listPosts.innerHTML = htmls.join("");
-    // var ele10 = [] //Chua 1 lan 10 posts
-    // var tmp = 0
-    // for (let i = 0; i < htmls.length; i++) {
-    //     if (i <= 9) {
-    //         ele10.push(htmls[i])
-    //     }else {
-    //         tmp = i
-    //         listPosts.innerHTML=ele10.join("");
-    //         ele10 = [];
-    //         break;
-    //         count()
-    //     }
-    // }
 
-    // document.addEventListener('scroll', function() {
-
-    //     a = window.scrollY
-    //     var bottom = $(document).height() - $(window).height()
-
-    //     if(a>bottom)
-    //     {   
-    //         count(tmp, htmls)
-    //         // $(ele10).appendTo(listPosts)
-    //         // ele10 = []
-    //     }
-    // })
-
-
+    for (var i = 0; i < posts.post.length; i++) {
+        var listComments = document.querySelector("#comments-"+posts.post[i]._id)
+        var xyz = posts.post[i].comment.map(function (e) {
+            return `
+            <div class="d-flex flex-row mb-2"> <img src="https://i.imgur.com/9AZ2QX1.jpg" width="40"
+                        class="rounded-image">
+                <div class="d-flex flex-column ml-2"> <a class="name text-dark" href="/personal/${e.user._id}">${e.user.username}</a> <small
+                        class="comment-text">${e.content}</small>
+                    <div class="d-flex flex-row align-items-center comment-func">
+                        <small>Like</small>
+                        <small>Reply</small> <small>18 mins</small>
+                    </div>
+                </div>
+            </div>
+            `
+        })
+        listComments.innerHTML = xyz.join("")
+    }
 }
 
+//Create post
 function createPosts(data, callback) {
     var Options = {
         method: "POST",
@@ -170,6 +152,45 @@ function handlecreate() {
     }
 }
 
+//Create comment
+function createComment(id, data, callback) {
+    var Options = {
+        method: 'PUT',
+        headers: {
+            'Authorization': "Bearer " + getCookie("token"),
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }
+    fetch('/comment/create/' + id, Options)
+        .then(function (response) {
+            response.json();
+        })
+        .then(callback)
+}
+
+function handleCreateComment(id) {
+    var commentInput = document.querySelector('#comment-input');
+    if (commentInput) {
+        commentInput.addEventListener('keypress' ,function (e) {
+            if (e.key == 'Enter') {
+                var commentContent = {
+                    content: commentInput.value
+                }
+                if (commentContent.content != '') {
+                    createComment(id, commentContent, function () {
+                        start()
+                    });
+                }else {
+                    alert('Vui long nhap noi dung comment')
+                }
+                $("comment-input").val('');
+            }
+        })
+    }
+}
+
+//Edit post
 function change(id, data, callback) {
     var Options = {
         method: "PUT",
@@ -214,6 +235,7 @@ function handlechange(id) {
     }
 }
 
+//Delete Post
 function deletePost(id) {
     var Options = {
         method: "DELETE",

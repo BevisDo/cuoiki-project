@@ -16,15 +16,10 @@ exports.commentCreateController = async (req, res) => {
             user: req.userId,
             content
         }]
-        // console.log(newComment)
         const commentCond = { _id: req.params.id }
-        // console.log(req.userId)
-        // console.log(res.token)
-        // const userComment = await pk_profile.findOne({ user: req.userId })
-
-        // console.log(userComment)
+        
         newComment = await Post.findOneAndUpdate(commentCond, { $push: { comment: newComment } })
-        // console.log(commentCond)
+        const username = await Post.findOne({ user: newComment.user }).populate({ path: 'comment', populate: { path: 'user' } })
 
         if (!newComment)
             return res.status(401).json({
@@ -34,7 +29,8 @@ exports.commentCreateController = async (req, res) => {
         res.json({
             success: true,
             message: 'Dang thanh cong',
-            comment: newComment
+            comment: newComment,
+            username: username
         })
     } catch (error) {
         console.log(error)
