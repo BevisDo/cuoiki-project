@@ -2,11 +2,6 @@ const express = require('express')
 const auth = require('../controller/auth')
 const router = express.Router()
 
-//signup
-router.get('/signup', function (req, res) {
-    res.render('signup', { title: 'Đăng ký phòng khoa' })
-})
-router.post('/signup', auth.pk_signup);
 
 router.get('/logout', auth.pk_logout)
 
