@@ -14,6 +14,7 @@ passport.use(new GoogleStrategy({
 },
     function (accessToken, refreshToken, profile, done) {
         const authId = 'google:' + profile.id;
+        const role = 'student';
         pk_profiles.findOne({ 'authId': authId })
             .then(user => {
                 if (user) {
@@ -23,6 +24,7 @@ passport.use(new GoogleStrategy({
                     authId: authId,
                     username: profile.displayName,
                     email: profile.emails[0].value,
+                    role: role,
                 }).save()
                     .then(user => done(null, user))
                     .catch(err => done(err, null));

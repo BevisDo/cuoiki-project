@@ -38,7 +38,6 @@ function getPostsById(id, callback) {
 
 //DOM posts
 function render(posts) {
-    console.log(posts)
     var listPosts = document.querySelector("#status")
     var htmls = posts.post.slice(0).reverse().map(function (e) {
         return `

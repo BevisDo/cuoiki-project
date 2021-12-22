@@ -13,7 +13,8 @@ const pk_profileSchema = new Schema({
     creatAt: {
         type: Date,
         default: Date.now
-    }
+    },
+    role: String
 })
 
 module.exports = mongoose.model('pk_profiles', pk_profileSchema)

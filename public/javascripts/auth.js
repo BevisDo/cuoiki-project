@@ -28,12 +28,12 @@ function login() {
             username: $('#username').val(),
             password: $('#password').val()
         }
-    }).then(data => {
+    })
+    .then(data => {
         setCookie('token', data.accessTokengg, 1)
         window.location.href = "/"
-    }
-    )
-        .catch(err => {
-            console.log(err);
-        })
+    })
+    .catch(err => {
+        console.log(err);
+    })
 }
