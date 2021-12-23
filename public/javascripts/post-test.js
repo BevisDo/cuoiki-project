@@ -96,6 +96,7 @@ function render(posts) {
     for (var i = 0; i < posts.post.length; i++) {
         var listComments = document.querySelector("#comments-"+posts.post[i]._id)
         var xyz = posts.post[i].comment.map(function (e) {
+            console.log(e)
             return `
             <div class="d-flex flex-row mb-2"> <img src="https://i.imgur.com/9AZ2QX1.jpg" width="40"
                         class="rounded-image">

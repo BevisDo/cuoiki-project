@@ -3,13 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var bodyParser = require('body-parser')
-const jwt = require('jsonwebtoken')
 
 
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var postRouter = require('./routes/post');
 var authRouter = require('./routes/auth');
 var ggauthRouter = require('./routes/ggauth');
@@ -64,7 +61,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/posts', postRouter);
 app.use('/auth', authRouter)
 app.use('/ggauth', ggauthRouter)

@@ -40,3 +40,35 @@ function colorLink() {
     }
 }
 linkColor.forEach(l => l.addEventListener('click', colorLink))
+
+function validateLogin() {
+    var username = document.getElementById('username')
+
+    username.addEventListener('blur', function() {
+        if (username.value == '') {
+            alert('Please enter a username')
+        }
+    })
+
+    var password = document.getElementById('password')
+
+    password.addEventListener('blur', function() {
+        if (password.value == '') {
+            alert('Please enter a password')
+        }
+    })
+
+    var confirm_password = document.getElementById('confirm_password')
+
+    confirm_password.addEventListener('blur', function() {
+        if (confirm_password.value == '') {
+            alert('Please enter a confirm password')
+        }
+        if (confirm_password.value != password.value) {
+            alert('Re-enter password incorrect')
+        }
+    })
+}
+
+
+validateLogin()
