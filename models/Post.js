@@ -10,6 +10,8 @@ const PostSchema = new Schema({
         type: String,
         require: true
     },
+    pictureUrl: String,
+    youtubeUrl: String,
     comment: [{
         user: {
             type: Schema.Types.ObjectId,

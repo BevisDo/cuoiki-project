@@ -5,7 +5,7 @@ const Post = require('../models/Post')
 // posts/create
 // Create Post
 exports.postCreateController = async (req, res) => {
-    const { content } = req.body
+    const { content, youtubeUrl, pictureUrl } = req.body
 
     if (!content)
         return res.status(400).json({
@@ -16,7 +16,9 @@ exports.postCreateController = async (req, res) => {
     try {
         const newPost = new Post({
             user: req.userId,
-            content
+            content, 
+            youtubeUrl,
+            pictureUrl
         })
         await newPost.save();
         const username = await Post.findOne({ user: newPost.user }).populate('user', ['username'])
@@ -61,7 +63,7 @@ exports.postUpdateController = async (req, res) => {
 
     try {
         let updatePost = {
-            content
+            content,
         }
         const postUpdateCond = { _id: req.params.id, user: req.userId }
 

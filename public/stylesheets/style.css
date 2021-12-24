@@ -321,14 +321,18 @@ hr {
 
 .picture {
   color: rgb(38, 196, 38);
-  padding-left: 15px;
+  /* padding-left: 15px; */
   padding-right: 15px;
 }
 
 .youtube {
   color: red;
-  padding-left: 15px;
+  /* padding-left: 15px; */
   padding-right: 15px;
+}
+
+.url {
+  margin: 3px 0 3px 0;
 }
 
 .dropleft {
