@@ -7,6 +7,8 @@ const pk_profileSchema = new Schema({
     },
     authId: String,
     email: String,
+    khoa: String,
+    classID: String,
     password: {
         type: String
     },

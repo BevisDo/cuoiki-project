@@ -13,6 +13,7 @@ var ggauthRouter = require('./routes/ggauth');
 var commentRouter = require('./routes/comment')
 var personalRouter = require('./routes/personal');
 var adminRouter = require('./routes/admin')
+var changeInfoRouter = require('./routes/student-change-info')
 
 
 var app = express();
@@ -67,6 +68,7 @@ app.use('/ggauth', ggauthRouter)
 app.use('/comment', commentRouter)
 app.use('/personal', personalRouter);
 app.use('/admin', adminRouter)
+app.use('/change', changeInfoRouter)
 
 app.use(function (req, res, next) {
   next(createError(404));

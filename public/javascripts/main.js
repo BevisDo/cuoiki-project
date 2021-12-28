@@ -7,6 +7,7 @@ function start() {
         getPostsById(id, render)
     }
     handlecreate()
+    handleChangeInfo()
 }
 start();
 
@@ -410,4 +411,45 @@ function deletePost(id) {
         .catch(function (err) {
             alert('Ban khong the xoa bai viet cua nguoi khac')
         })
+}
+
+//Change student info
+function changeInfo(data, callback) {
+    var Options = {
+        method: "POST",
+        headers: {
+            'Authorization': "Bearer " + getCookie("token"),
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }
+    fetch('/change', Options)
+        .then(function (response) {
+            response.json();//promise resolves dạng JSON
+        })
+        .then(callback)
+}
+
+function handleChangeInfo() {
+    var changeBtn = document.querySelector('#change-btn')
+    var formChangeInfo = document.querySelector('#formChangeInfo')
+    if (changeBtn) {
+        changeBtn.onclick = function () {
+            var newUsername = formChangeInfo.querySelector('#username').value;
+            var newClassID = formChangeInfo.querySelector('#classID').value;
+            var newKhoa = formChangeInfo.querySelector('#khoa').value;
+
+            var formdata = {
+                username: newUsername,
+                classID: newClassID,
+                khoa: newKhoa,
+            }
+            changeInfo(formdata, function() {
+                alert('Thay doi thanh cong')
+            })
+            $("#username").val('');
+            $("#classID").val('');
+            $("#khoa").val('');
+        }
+    }
 }
