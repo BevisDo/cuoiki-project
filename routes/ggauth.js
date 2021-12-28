@@ -15,7 +15,8 @@ passport.use(new GoogleStrategy({
     function (accessToken, refreshToken, profile, done) {
         const authId = 'google:' + profile.id;
         const role = 'student';
-        pk_profiles.findOne({ 'authId': authId })
+        if (/@student.tdtu.edu.vn\s*$/.test(profile.emails[0].value) || /@tdtu.edu.vn\s*$/.test(profile.emails[0].value)) {
+            pk_profiles.findOne({ 'authId': authId })
             .then(user => {
                 if (user) {
                     return done(null, user);
@@ -29,7 +30,9 @@ passport.use(new GoogleStrategy({
                     .then(user => done(null, user))
                     .catch(err => done(err, null));
             });
-
+        }else {
+            return done(null)
+        }
     }
 ));
 
