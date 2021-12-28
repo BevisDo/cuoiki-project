@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken')
 passport.use(new GoogleStrategy({
     clientID: "178602012133-er3a71j1c0p20eaba78t4viuub3694k6.apps.googleusercontent.com",
     clientSecret: "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",
-    callbackURL: "http://localhost:3000/ggauth/google/callback"
+    callbackURL: "https://cuoiki-project.herokuapp.com/ggauth/google/callback"
 },
     function (accessToken, refreshToken, profile, done) {
         const authId = 'google:' + profile.id;
