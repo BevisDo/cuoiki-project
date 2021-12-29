@@ -9,6 +9,6 @@ router.get('/', function(req, res, next) {
     res.render('student-change-info', { title: 'Change info account' });
 });
 
-router.post('/', verify, profile.profileUpdateController)
+router.put('/', verify, profile.profileUpdateController)
 
 module.exports = router;

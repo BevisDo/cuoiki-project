@@ -125,6 +125,8 @@ function validateLogin() {
             alert('Re-enter password incorrect')
         }
     })
+
+    
 }
 validateLogin()
 
@@ -416,7 +418,7 @@ function deletePost(id) {
 //Change student info
 function changeInfo(data, callback) {
     var Options = {
-        method: "POST",
+        method: "PUT",
         headers: {
             'Authorization': "Bearer " + getCookie("token"),
             'Content-Type': 'application/json'
