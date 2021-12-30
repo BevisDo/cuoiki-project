@@ -16,7 +16,7 @@ exports.postCreateController = async (req, res) => {
     try {
         const newPost = new Post({
             user: req.userId,
-            content, 
+            content,
             youtubeUrl,
             pictureUrl
         })
@@ -39,9 +39,16 @@ exports.postCreateController = async (req, res) => {
 // Read post
 exports.postReadController = async (req, res) => {
     try {
-        const post = await Post.find().sort([['create_at', -1]]).populate('user', ['username']).populate({ path: 'comment', populate: { path: 'user'}})
+        const post = await Post.find().sort([['create_at', -1]]).populate('user', ['username']).populate({ path: 'comment', populate: { path: 'user' } })
 
-        res.json({ success: true, post})
+        const username = await Post.findOne({ user: req.userId }).populate('user', ['username'])
+        // console.log(username)
+
+        res.json({
+            success: true,
+            post,
+            username: username.user.username
+        })
         // res.redirect('/posts')
     } catch (error) {
         console.log(error)
@@ -113,8 +120,8 @@ exports.postDeleteController = async (req, res) => {
 
 exports.postReadControlleById = async (req, res) => {
     try {
-        const post = await Post.find( {user: req.params.id} ).sort([['create_at', -1]]).populate('user', ['username']).populate({ path: 'comment', populate: { path: 'user'}})
-        
+        const post = await Post.find({ user: req.params.id }).sort([['create_at', -1]]).populate('user', ['username']).populate({ path: 'comment', populate: { path: 'user' } })
+
         res.json({ success: true, post })
         // res.redirect('/posts')
     } catch (error) {

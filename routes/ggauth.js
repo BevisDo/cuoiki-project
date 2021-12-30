@@ -17,20 +17,20 @@ passport.use(new GoogleStrategy({
         const role = 'student';
         if (/@student.tdtu.edu.vn\s*$/.test(profile.emails[0].value) || /@tdtu.edu.vn\s*$/.test(profile.emails[0].value)) {
             pk_profiles.findOne({ 'authId': authId })
-            .then(user => {
-                if (user) {
-                    return done(null, user);
-                }
-                new pk_profiles({
-                    authId: authId,
-                    username: profile.displayName,
-                    email: profile.emails[0].value,
-                    role: role,
-                }).save()
-                    .then(user => done(null, user))
-                    .catch(err => done(err, null));
-            });
-        }else {
+                .then(user => {
+                    if (user) {
+                        return done(null, user);
+                    }
+                    new pk_profiles({
+                        authId: authId,
+                        username: profile.displayName,
+                        email: profile.emails[0].value,
+                        role: role,
+                    }).save()
+                        .then(user => done(null, user))
+                        .catch(err => done(err, null));
+                });
+        } else {
             return done(null)
         }
     }
