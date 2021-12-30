@@ -43,13 +43,13 @@ function login() {
             password: $('#password').val()
         }
     })
-    .then(data => {
-        setCookie('token', data.accessTokengg, 1)
-        window.location.href = "/"
-    })
-    .catch(err => {
-        console.log(err);
-    })
+        .then(data => {
+            setCookie('token', data.accessTokengg, 1)
+            window.location.href = "/"
+        })
+        .catch(err => {
+            console.log(err);
+        })
 }
 
 /*===== UI function =====*/
@@ -101,7 +101,7 @@ linkColor.forEach(l => l.addEventListener('click', colorLink))
 function validateLogin() {
     var username = document.getElementById('username')
 
-    username.addEventListener('blur', function() {
+    username.addEventListener('blur', function () {
         if (username.value == '') {
             alert('Please enter a username')
         }
@@ -109,7 +109,7 @@ function validateLogin() {
 
     var password = document.getElementById('password')
 
-    password.addEventListener('blur', function() {
+    password.addEventListener('blur', function () {
         if (password.value == '') {
             alert('Please enter a password')
         }
@@ -117,7 +117,7 @@ function validateLogin() {
 
     var confirm_password = document.getElementById('confirm_password')
 
-    confirm_password.addEventListener('blur', function() {
+    confirm_password.addEventListener('blur', function () {
         if (confirm_password.value == '') {
             alert('Please enter a confirm password')
         }
@@ -126,7 +126,7 @@ function validateLogin() {
         }
     })
 
-    
+
 }
 validateLogin()
 
@@ -161,6 +161,8 @@ function getPostsById(id, callback) {
 
 //DOM posts
 function render(posts) {
+    var usernameava = document.querySelector("#username_ava")
+    usernameava.innerHTML = posts.username
     var listPosts = document.querySelector("#status")
     var htmls = posts.post.slice(0).reverse().map(function (e) {
         return `
@@ -217,7 +219,7 @@ function render(posts) {
     listPosts.innerHTML = htmls.join("");
 
     for (var i = 0; i < posts.post.length; i++) {
-        var listComments = document.querySelector("#comments-"+posts.post[i]._id)
+        var listComments = document.querySelector("#comments-" + posts.post[i]._id)
         var xyz = posts.post[i].comment.map(function (e) {
             return `
             <div class="d-flex flex-row mb-2"> <img src="https://i.imgur.com/9AZ2QX1.jpg" width="40"
@@ -236,7 +238,7 @@ function render(posts) {
     }
 
     for (var i = 0; i < posts.post.length; i++) {
-        var audio = document.querySelector(".audio-"+posts.post[i]._id);
+        var audio = document.querySelector(".audio-" + posts.post[i]._id);
         if (posts.post[i].youtubeUrl) {
             audio.innerHTML += `
             <iframe width="100%" height="315" src="${posts.post[i].youtubeUrl}" id="youtubeUrlele" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -273,13 +275,13 @@ function handlecreate() {
     if (createBtn) {
         createBtn.onclick = function () {
             var content = document.querySelector('#content').value;
-            
+
             //New
             var pictureUrl = document.querySelector('#pictureUrl').value;
             var youtubeUrl = document.querySelector('#youtubeUrl').value;
 
             if (youtubeUrl) {
-                var a = youtubeUrl.slice(0 ,24) //https://www.youtube.com/
+                var a = youtubeUrl.slice(0, 24) //https://www.youtube.com/
                 var b = youtubeUrl.slice(32, 43) //code
                 youtubeUrl = a + 'embed/' + b
             }
@@ -326,7 +328,7 @@ function handleCreateComment(id) {
     var postItem = document.querySelector(".post-" + id);
     var commentInput = postItem.querySelector('#comment-input');
     if (commentInput) {
-        commentInput.addEventListener('keypress' ,function (e) {
+        commentInput.addEventListener('keypress', function (e) {
             if (e.key == 'Enter') {
                 var commentContent = {
                     content: commentInput.value
@@ -335,7 +337,7 @@ function handleCreateComment(id) {
                     createComment(id, commentContent, function () {
                         start()
                     });
-                }else {
+                } else {
                     alert('Vui long nhap noi dung comment')
                 }
                 $("comment-input").val('');
@@ -446,7 +448,7 @@ function handleChangeInfo() {
                 classID: newClassID,
                 khoa: newKhoa,
             }
-            changeInfo(formdata, function() {
+            changeInfo(formdata, function () {
                 alert('Thay doi thanh cong')
             })
             $("#username").val('');
