@@ -1,4 +1,4 @@
-// const pk_profile = require('../models/pk_profile')
+const pk_profile = require('../models/pk_profile')
 const Post = require('../models/Post')
 
 
@@ -39,15 +39,15 @@ exports.postCreateController = async (req, res) => {
 // Read post
 exports.postReadController = async (req, res) => {
     try {
+        const username = await pk_profile.findOne({ _id: req.userId })
+
         const post = await Post.find().sort([['create_at', -1]]).populate('user', ['username']).populate({ path: 'comment', populate: { path: 'user' } })
 
-        const username = await Post.findOne({ user: req.userId }).populate('user', ['username'])
-        // console.log(username)
 
         res.json({
             success: true,
             post,
-            username: username.user.username
+            username: username.username
         })
         // res.redirect('/posts')
     } catch (error) {
