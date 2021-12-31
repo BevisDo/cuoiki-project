@@ -120,9 +120,14 @@ exports.postDeleteController = async (req, res) => {
 
 exports.postReadControlleById = async (req, res) => {
     try {
+        const username = await pk_profile.findOne({ _id: req.userId })
         const post = await Post.find({ user: req.params.id }).sort([['create_at', -1]]).populate('user', ['username']).populate({ path: 'comment', populate: { path: 'user' } })
 
-        res.json({ success: true, post })
+        res.json({
+            success: true,
+            post,
+            username: username.username
+        })
         // res.redirect('/posts')
     } catch (error) {
         console.log(error)
