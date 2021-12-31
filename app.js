@@ -15,6 +15,8 @@ var personalRouter = require('./routes/personal');
 var adminRouter = require('./routes/admin')
 var changeInfoRouter = require('./routes/student-change-info')
 var notiPostRouter = require('./routes/noti-post');
+var listPBRouter = require('./routes/list-PB');
+var notiListRouter = require('./routes/noti-list');
 
 
 
@@ -72,6 +74,8 @@ app.use('/personal', personalRouter);
 app.use('/admin', adminRouter)
 app.use('/change', changeInfoRouter)
 app.use('/noti-post', notiPostRouter);
+app.use('/listpb', listPBRouter);
+app.use('/noti-list', notiListRouter);
 
 
 app.use(function (req, res, next) {
