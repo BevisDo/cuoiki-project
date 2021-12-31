@@ -15,7 +15,7 @@ router.put('/:id', verify, postUpdateController)
 router.delete('/:id', verify, postDeleteController)
 
 //GET post by userID
-router.get('/:id', postReadControlleById);
+router.get('/:id', verify, postReadControlleById);
 
 module.exports = router;
 
